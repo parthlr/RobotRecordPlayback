@@ -30,19 +30,11 @@ public class RecordationModule {
 	}
 	
 	public void playback() {
-		if (speeds == null) {
-			SmartDashboard.putString("Speeds", "NULL");
-		}
 		for (ArrayList<Double> motors : speeds) {
-			/*driveSubsystem.setFrontLeft(motors.get(0));
+			driveSubsystem.setFrontLeft(motors.get(0));
 			driveSubsystem.setFrontRight(motors.get(1));
 			driveSubsystem.setBackLeft(motors.get(2));
-			driveSubsystem.setBackRight(motors.get(3));*/
-			if (motors.get(0) == null) {
-				SmartDashboard.putString("Motor 0", "NULL");
-			} else {
-				SmartDashboard.putString("Motor 0", motors.get(0)+"");
-			}
+			driveSubsystem.setBackRight(motors.get(3));
 		}
 	}
 	
