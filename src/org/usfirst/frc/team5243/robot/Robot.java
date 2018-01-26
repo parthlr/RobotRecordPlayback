@@ -21,9 +21,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	
 	public static WotInRoboticRecordation wotSubsystem;
 	public static DriveSubsystem driveSubsystem;
+	public static RecordationModule rm;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -35,12 +35,17 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
+		oi.init();
+		driveSubsystem = new DriveSubsystem();
+		rm = new RecordationModule();
+		rm.initialize();
 		wotSubsystem = new WotInRoboticRecordation();
 		wotSubsystem.commandInitializer();
-		
-		driveSubsystem = new DriveSubsystem();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.putBoolean("Recording", false);
+		SmartDashboard.putBoolean("Playback", false);
+		SmartDashboard.putBoolean("Stop recording pressed", false);
 	}
 
 	/**

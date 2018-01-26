@@ -1,6 +1,10 @@
 package org.usfirst.frc.team5243.robot;
 
+import org.usfirst.frc.team5243.robot.commands.Playbackation;
+import org.usfirst.frc.team5243.robot.commands.Recordation;
+import org.usfirst.frc.team5243.robot.commands.StopRecording;
 import org.usfirst.frc.team5243.robot.commands.SwitchToPlayback;
+import org.usfirst.frc.team5243.robot.commands.TankDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -39,15 +43,41 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
+	Joystick leftstick;
 	Joystick rightstick;
+	
+	//Button switchToPlayback;
+	
+	//Button record;
+	//Button playback;
+	//Button stoprecording;
 	
 	Button switchToPlayback;
 	
 	public void init() {
+		leftstick = new Joystick(0);
 		rightstick = new Joystick(1);
 		
-		switchToPlayback = new JoystickButton(rightstick, 1);
-		switchToPlayback.whenPressed(new SwitchToPlayback());
+		//record = new JoystickButton(rightstick, 3);
+		//playback = new JoystickButton(rightstick, 4);
+		//stoprecording = new JoystickButton(rightstick, 11);
+		
+		switchToPlayback = new JoystickButton(rightstick, 3);
+		switchToPlayback.whenPressed(new Playbackation());
+		
+		//record.whenPressed(new Recordation());
+		//playback.whenPressed(new Playbackation());
+		//stoprecording.whenPressed(new StopRecording());
+		//switchToPlayback = new JoystickButton(rightstick, 1);
+		//switchToPlayback.whenPressed(new SwitchToPlayback());
+	}
+	
+	public Joystick getLeftStick() {
+		return leftstick;
+	}
+	
+	public Joystick getRightStick() {
+		return rightstick;
 	}
 	
 }

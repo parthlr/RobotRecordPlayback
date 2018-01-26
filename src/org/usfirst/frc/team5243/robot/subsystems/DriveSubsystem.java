@@ -1,7 +1,14 @@
 package org.usfirst.frc.team5243.robot.subsystems;
 
+import org.usfirst.frc.team5243.robot.Robot;
+import org.usfirst.frc.team5243.robot.RobotMap;
+import org.usfirst.frc.team5243.robot.commands.TankDrive;
+
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  *
@@ -11,21 +18,43 @@ public class DriveSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	Victor frontLeft;
-	Victor frontRight;
-	Victor backLeft;
-	Victor backRight;
+	VictorSP frontLeft;
+	VictorSP frontRight;
+	VictorSP backLeft;
+	VictorSP backRight;
+	SpeedControllerGroup left;
+	SpeedControllerGroup right;
+	
+	DifferentialDrive drive;
 	
 	public DriveSubsystem() {
-		frontLeft = new Victor(1);
-		frontRight = new Victor(2);
-		backLeft = new Victor(3);
-		backRight = new Victor(4);
+		frontLeft = new VictorSP(RobotMap.frontLeft);
+		frontRight = new VictorSP(RobotMap.frontRight);
+		backLeft = new VictorSP(RobotMap.backLeft);
+		backRight = new VictorSP(RobotMap.backRight);
+		left = new SpeedControllerGroup(frontLeft, backLeft);
+		right = new SpeedControllerGroup(frontRight, backRight);
+		
+		drive = new DifferentialDrive(right, left);
+		drive.setSafetyEnabled(false);
 	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new TankDrive());
+    }
+    
+    public void tankDrive() {
+    	drive.tankDrive(Robot.oi.getRightStick().getY(), Robot.oi.getLeftStick().getY());
+    }
+    
+    public double getRightValues() {
+    	return -Robot.oi.getLeftStick().getY();
+    }
+    
+    public double getLeftValues() {
+    	return -Robot.oi.getRightStick().getY();
     }
     
     public void setFrontLeft(double speed) {

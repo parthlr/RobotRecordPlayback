@@ -1,42 +1,28 @@
 package org.usfirst.frc.team5243.robot.commands;
 
-import java.util.ArrayList;
-
-import org.usfirst.frc.team5243.robot.RecordationModule;
-import org.usfirst.frc.team5243.robot.Robot;
-import org.usfirst.frc.team5243.robot.subsystems.DriveSubsystem;
-import org.usfirst.frc.team5243.robot.subsystems.WotInRoboticRecordation;
+import org.usfirst.frc.team5243.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class Playbackation extends Command {
-	
-	RecordationModule rm;
+public class StopRecording extends Command {
 
-    public Playbackation() {
+    public StopRecording() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	rm = Robot.rm;
-    	//for (Subsystem sub : wotSubsystem.getRecordationModule().getSubsystems()) {
-    	//	requires(sub);
-    	//}
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//System.out.println("Playing back");
-    	SmartDashboard.putBoolean("Playback", true);
-    	rm.playback();
+    	SmartDashboard.putBoolean("Stop recording pressed", true);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	RobotMap.isRecording = false;
     }
 
     // Make this return true when this Command no longer needs to run execute()
