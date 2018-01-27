@@ -54,15 +54,17 @@ public class OI {
 	
 	Button switchToPlayback;
 	
-	public void init() {
+	public void initJoysticks() {
 		leftstick = new Joystick(0);
 		rightstick = new Joystick(1);
-		
+	}
+	
+	public void initCommands() {		
 		//record = new JoystickButton(rightstick, 3);
 		//playback = new JoystickButton(rightstick, 4);
 		//stoprecording = new JoystickButton(rightstick, 11);
 		
-		switchToPlayback = new JoystickButton(rightstick, 3);
+		switchToPlayback = new JoystickButton(rightstick, 6);
 		switchToPlayback.whenPressed(new Playbackation());
 		
 		//record.whenPressed(new Recordation());

@@ -45,6 +45,13 @@ public class DriveSubsystem extends Subsystem {
     	setDefaultCommand(new TankDrive());
     }
     
+    public void stopAll() {
+    	frontLeft.set(0.0);
+		backLeft.set(0.0);
+		frontRight.set(0.0);
+		backRight.set(0.0);
+    }
+    
     public void tankDrive() {
     	drive.tankDrive(Robot.oi.getRightStick().getY(), Robot.oi.getLeftStick().getY());
     }

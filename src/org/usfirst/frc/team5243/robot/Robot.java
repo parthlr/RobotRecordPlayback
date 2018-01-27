@@ -35,12 +35,14 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		oi.init();
+		oi.initJoysticks();
 		driveSubsystem = new DriveSubsystem();
+		driveSubsystem.stopAll();
 		rm = new RecordationModule();
 		rm.initialize();
 		wotSubsystem = new WotInRoboticRecordation();
 		wotSubsystem.commandInitializer();
+		oi.initCommands();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		SmartDashboard.putBoolean("Recording", false);
