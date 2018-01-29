@@ -10,14 +10,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RecordationModule {
 	
-	ArrayList<ArrayList<Double>> speeds;
+	ArrayList<Double> frontleft;
+	ArrayList<Double> frontright;
+	ArrayList<Double> backleft;
+	ArrayList<Double> backright;
 	DriveSubsystem driveSubsystem;
 	
 	public RecordationModule() {
 	}
 	
 	public void initialize() {
-		speeds = new ArrayList<ArrayList<Double>>();
+		frontleft = new ArrayList<Double>();
+		frontright = new ArrayList<Double>();
+		backleft = new ArrayList<Double>();
+		backright = new ArrayList<Double>();
 		driveSubsystem = Robot.driveSubsystem;
 	}
 	
@@ -27,31 +33,27 @@ public class RecordationModule {
 		motors.add(driveSubsystem.getFrontRightSpeed());
 		motors.add(driveSubsystem.getBackLeftSpeed());
 		motors.add(driveSubsystem.getBackRightSpeed());*/
-		motors.add(driveSubsystem.getRightValues());
-		motors.add(driveSubsystem.getLeftValues());
-		speeds.add(motors);
+		frontleft.add(driveSubsystem.getFrontLeftSpeed());
+		frontright.add(driveSubsystem.getFrontRightSpeed());
+		backleft.add(driveSubsystem.getBackLeftSpeed());
+		backright.add(driveSubsystem.getBackRightSpeed());
 	}
 	
 	public void playback() {
-		for (ArrayList<Double> motors : speeds) {
-			System.out.println("Right Values: " + motors.get(0));
-			System.out.println("Left Values: " + motors.get(1));
-			Timer.delay(0.01);
-			driveSubsystem.setFrontLeft(motors.get(1));
-			driveSubsystem.setFrontRight(motors.get(0));
-			driveSubsystem.setBackLeft(motors.get(1));
-			driveSubsystem.setBackRight(motors.get(0));			
+		for (int i = 0; i < frontleft.size(); i++) {
+			Timer.delay(0.02);
+			driveSubsystem.setFrontLeft(frontleft.get(i));
+			driveSubsystem.setFrontRight(frontright.get(i));
+			driveSubsystem.setBackLeft(backleft.get(i));
+			driveSubsystem.setBackRight(backright.get(i));			
 		}
 	}
 	
-	
-	
-	public void addMotorSpeed(int index, double speed) {
-		speeds.get(index).add(speed);
-	}
-	
-	public ArrayList<ArrayList<Double>> getMotorSpeeds() {
-		return speeds;
+	public void clearData() {
+		frontleft.clear();
+		frontright.clear();
+		backleft.clear();
+		backright.clear();
 	}
 
 }
