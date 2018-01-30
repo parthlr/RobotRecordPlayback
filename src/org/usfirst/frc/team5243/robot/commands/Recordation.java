@@ -8,6 +8,7 @@ import org.usfirst.frc.team5243.robot.RobotMap;
 import org.usfirst.frc.team5243.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team5243.robot.subsystems.WotInRoboticRecordation;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,6 +20,8 @@ public class Recordation extends Command {
 	
 	RecordationModule rm;
 	DriveSubsystem driveSubsystem;
+	double start;
+	double end;
 
     public Recordation() {
         // Use requires() here to declare subsystem dependencies
@@ -37,6 +40,7 @@ public class Recordation extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	SmartDashboard.putBoolean("Recording", true);
+    	start = Timer.getFPGATimestamp();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -61,6 +65,9 @@ public class Recordation extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	//end = Timer.getFPGATimestamp();
+    	//System.out.println(end - start);
+    	//System.out.println(rm.frontleft.size());
     	//end();
     }
 }

@@ -18,5 +18,5 @@ public class WriteToTextFile{
 		printWriter.println(line);
 		printWriter.close();
 	}
-	
+
 }

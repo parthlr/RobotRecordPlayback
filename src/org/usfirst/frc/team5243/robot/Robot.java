@@ -57,7 +57,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		rm.clearData();
+		System.out.println(rm.backleft.size() + "," + rm.backright.size() + "," + rm.frontleft.size() + "," + rm.frontright.size());
 	}
 
 	@Override

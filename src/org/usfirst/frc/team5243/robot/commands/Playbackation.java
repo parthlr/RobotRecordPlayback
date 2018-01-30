@@ -7,6 +7,7 @@ import org.usfirst.frc.team5243.robot.Robot;
 import org.usfirst.frc.team5243.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team5243.robot.subsystems.WotInRoboticRecordation;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -31,7 +32,10 @@ public class Playbackation extends Command {
     protected void initialize() {
     	//System.out.println("Playing back");
     	SmartDashboard.putBoolean("Playback", true);
+    	//double start = Timer.getFPGATimestamp();
     	rm.playback();
+    	//double end = Timer.getFPGATimestamp();
+    	//System.out.println(end - start);
     }
 
     // Called repeatedly when this Command is scheduled to run

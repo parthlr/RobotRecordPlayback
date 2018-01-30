@@ -53,7 +53,7 @@ public class DriveSubsystem extends Subsystem {
     }
     
     public void tankDrive() {
-    	drive.tankDrive(Robot.oi.getRightStick().getY() / 2, Robot.oi.getLeftStick().getY() / 2);
+    	drive.tankDrive(Robot.oi.getRightStick().getY() / 1, Robot.oi.getLeftStick().getY() / 1);
     }
     
     public double getRightValues() {
@@ -61,7 +61,7 @@ public class DriveSubsystem extends Subsystem {
     }
     
     public double getLeftValues() {
-    	return -Robot.oi.getRightStick().getY();
+    	return Robot.oi.getRightStick().getY();
     }
     
     public void setFrontLeft(double speed) {
