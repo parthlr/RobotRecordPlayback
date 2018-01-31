@@ -45,6 +45,10 @@ public class DriveSubsystem extends Subsystem {
     	setDefaultCommand(new TankDrive());
     }
     
+    public DifferentialDrive getDrive() {
+    	return drive;
+    }
+    
     public void stopAll() {
     	frontLeft.set(0.0);
 		backLeft.set(0.0);
@@ -57,7 +61,7 @@ public class DriveSubsystem extends Subsystem {
     }
     
     public double getRightValues() {
-    	return -Robot.oi.getLeftStick().getY();
+    	return Robot.oi.getLeftStick().getY();
     }
     
     public double getLeftValues() {

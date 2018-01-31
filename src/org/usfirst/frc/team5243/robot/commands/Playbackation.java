@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Playbackation extends Command {
 	
 	RecordationModule rm;
+	boolean isFinished;
+	int index;
 
     public Playbackation() {
         // Use requires() here to declare subsystem dependencies
@@ -30,16 +32,24 @@ public class Playbackation extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	index = 0;
+    	isFinished = false;
+    	rm.playback();
     	//System.out.println("Playing back");
     	SmartDashboard.putBoolean("Playback", true);
     	//double start = Timer.getFPGATimestamp();
-    	rm.playback();
     	//double end = Timer.getFPGATimestamp();
     	//System.out.println(end - start);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	/*if (index == rm.getSize() - 1) {
+    		rm.playback(index);
+    	} else {
+    		isFinished = true;
+    	}
+    	index++;*/
     	
     }
 
