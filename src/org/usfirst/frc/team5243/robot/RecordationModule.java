@@ -1,8 +1,10 @@
 package org.usfirst.frc.team5243.robot;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.usfirst.frc.team5243.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team5243.robot.textfile.ReadFromTextFile;
 import org.usfirst.frc.team5243.robot.textfile.WriteToCSV;
 import org.usfirst.frc.team5243.robot.textfile.WriteToTextFile;
 
@@ -19,6 +21,9 @@ public class RecordationModule {
 	ArrayList<Double> leftValues;
 	ArrayList<Double> rightValues;
 	
+	ReadFromTextFile readFile;
+	WriteToTextFile writeFile;
+	
 	public RecordationModule() {
 	}
 	
@@ -31,6 +36,9 @@ public class RecordationModule {
 		
 		leftValues = new ArrayList<Double>();
 		rightValues = new ArrayList<Double>();
+		
+		readFile = new ReadFromTextFile("/u/TestAuton.txt");
+		writeFile = new WriteToTextFile("/u/TestAuton.txt");
 	}
 	
 	public void record() {
@@ -46,7 +54,30 @@ public class RecordationModule {
 		backright.add(driveSubsystem.getLeftValues());*/
 		leftValues.add(driveSubsystem.getRightValues());
 		rightValues.add(driveSubsystem.getLeftValues());
-		System.out.println(Timer.getFPGATimestamp());
+		//System.out.println(Timer.getFPGATimestamp());
+	}
+	
+	public void read() {
+		try {
+			readFile.read();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println(readFile.getValue(0, 1));
+	}
+	
+	public void writeArray() {
+		for (int i = 0; i < leftValues.size(); i++) {
+			double leftValue = leftValues.get(i);
+			double rightValue = rightValues.get(i);
+			String line = "/" + leftValue + "/" + rightValue + "/";
+			try {
+				writeFile.write(line);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 	
 	public void playback() {

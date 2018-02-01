@@ -3,8 +3,8 @@ package org.usfirst.frc.team5243.robot.subsystems;
 import java.util.ArrayList;
 
 import org.usfirst.frc.team5243.robot.RecordationModule;
-import org.usfirst.frc.team5243.robot.commands.Playbackation;
-import org.usfirst.frc.team5243.robot.commands.Recordation;
+import org.usfirst.frc.team5243.robot.commands.auton.Playbackation;
+import org.usfirst.frc.team5243.robot.commands.auton.Recordation;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;

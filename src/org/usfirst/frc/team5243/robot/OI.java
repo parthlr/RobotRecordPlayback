@@ -1,10 +1,12 @@
 package org.usfirst.frc.team5243.robot;
 
-import org.usfirst.frc.team5243.robot.commands.Playbackation;
-import org.usfirst.frc.team5243.robot.commands.Recordation;
-import org.usfirst.frc.team5243.robot.commands.StopRecording;
-import org.usfirst.frc.team5243.robot.commands.SwitchToPlayback;
 import org.usfirst.frc.team5243.robot.commands.TankDrive;
+import org.usfirst.frc.team5243.robot.commands.auton.Playbackation;
+import org.usfirst.frc.team5243.robot.commands.auton.Recordation;
+import org.usfirst.frc.team5243.robot.commands.auton.StopRecording;
+import org.usfirst.frc.team5243.robot.commands.auton.SwitchToPlayback;
+import org.usfirst.frc.team5243.robot.commands.auton.TestReadFile;
+import org.usfirst.frc.team5243.robot.commands.auton.WriteArration;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -54,6 +56,8 @@ public class OI {
 	
 	Button switchToPlayback;
 	
+	Button readFile;
+	
 	public void initJoysticks() {
 		leftstick = new Joystick(0);
 		rightstick = new Joystick(1);
@@ -66,6 +70,9 @@ public class OI {
 		
 		switchToPlayback = new JoystickButton(rightstick, 6);
 		switchToPlayback.whenPressed(new Playbackation());
+		
+		readFile = new JoystickButton(rightstick, 4);
+		readFile.whenPressed(new WriteArration());
 		
 		//record.whenPressed(new Recordation());
 		//playback.whenPressed(new Playbackation());

@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5243.robot.commands;
+package org.usfirst.frc.team5243.robot.commands.auton;
 
 import java.util.ArrayList;
 

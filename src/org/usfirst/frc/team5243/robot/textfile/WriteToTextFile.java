@@ -16,6 +16,7 @@ public class WriteToTextFile{
 		FileWriter fileWriter = new FileWriter(path, true);
 		PrintWriter printWriter = new PrintWriter(fileWriter);
 		printWriter.println(line);
+		printWriter.println();
 		printWriter.close();
 	}
 
